@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+html, body { height: 100%; }
+body {
+  @apply bg-neutral-100 text-ink antialiased dark:bg-black dark:text-neutral-100;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+/* the phone-width app column (also centred on desktop) */
+.app-col { @apply relative mx-auto min-h-[100dvh] w-full max-w-md bg-white dark:bg-[#0b1410]; }
+@media (min-width: 448px) { .app-col { box-shadow: 0 0 60px -20px rgba(16,68,45,.25); } }
+
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.pt-safe { padding-top: env(safe-area-inset-top); }
+
+@layer components {
+  .card { @apply rounded-3xl border border-neutral-100 bg-white shadow-card dark:border-white/5 dark:bg-[#12201a] dark:shadow-none; }
+  .btn { @apply inline-flex min-h-[44px] select-none items-center justify-center gap-2 rounded-2xl px-4 text-[15px] font-semibold transition active:scale-[.97] disabled:opacity-50 disabled:active:scale-100; }
+  .btn-primary { @apply btn bg-brand-600 text-white shadow-sm hover:bg-brand-700; }
+  .btn-soft { @apply btn bg-brand-50 text-brand-700 hover:bg-brand-100 dark:bg-brand-500/15 dark:text-brand-300; }
+  .btn-outline { @apply btn border border-neutral-200 text-ink-soft hover:bg-neutral-50 dark:border-white/10 dark:text-neutral-300 dark:hover:bg-white/5; }
+  .btn-danger { @apply btn bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-500/15 dark:text-red-300; }
+  .icon-btn { @apply grid h-10 w-10 place-items-center rounded-full text-ink-soft transition active:scale-90 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-white/10; }
+  .input { @apply w-full rounded-2xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-base text-ink outline-none transition placeholder:text-ink-mute focus:border-brand-500 focus:bg-white focus:ring-4 focus:ring-brand-500/15 dark:border-white/10 dark:bg-white/5 dark:text-neutral-100 dark:focus:bg-white/10; }
+  .label { @apply mb-1.5 block text-sm font-semibold text-ink-soft dark:text-neutral-300; }
+  .chip { @apply inline-flex h-9 shrink-0 items-center rounded-full border border-neutral-200 px-4 text-sm font-medium text-ink-soft transition active:scale-95 dark:border-white/10 dark:text-neutral-300; }
+  .chip-on { @apply border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500 dark:text-white; }
+  .section-title { @apply text-base font-bold text-ink dark:text-white; }
+}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+input[type='date'], input[type='time'] { min-height: 48px; }
+input[type='range'] { accent-color: #17814b; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
